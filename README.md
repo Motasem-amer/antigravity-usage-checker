@@ -4,7 +4,7 @@
 
 ![Version](https://img.shields.io/badge/version-0.3.0-blue)
 ![Go](https://img.shields.io/badge/Go-1.21+-00ADD8?logo=go)
-![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
+![Platform](https://img.shields.io/badge/platform-Windows-blue)
 
 ## 🇬🇧 English
 
