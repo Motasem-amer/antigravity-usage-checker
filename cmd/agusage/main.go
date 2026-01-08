@@ -63,7 +63,11 @@ func run(outputJSON bool) error {
 	// Step 2: Load OAuth credentials (optional, for future use)
 	creds, _ := auth.LoadCredentials()
 	if creds != nil {
-		fmt.Printf("✅ Credentials loaded (expires in %d min)\n", creds.ExpiresInMinutes())
+		if creds.IsExpired() {
+			fmt.Println("⚠️  Credentials loaded but expired")
+		} else {
+			fmt.Printf("✅ Credentials loaded (expires in %d min)\n", creds.ExpiresInMinutes())
+		}
 	}
 	
 	// Step 3: Call API to get quota

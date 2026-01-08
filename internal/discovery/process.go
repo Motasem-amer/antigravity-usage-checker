@@ -132,57 +132,6 @@ func parseProcessInfoJSON(output string) (*ProcessInfo, error) {
 	return info, nil
 }
 
-// parseProcessInfo parses PowerShell output to extract process information.
-// PowerShell Format-List wraps long command lines across multiple lines.
-func parseProcessInfo(output string) (*ProcessInfo, error) {
-	lines := strings.Split(output, "\n")
-	
-	var pid int
-	var cmdLine strings.Builder
-	inCommandLine := false
-	
-	for _, line := range lines {
-		trimmed := strings.TrimSpace(line)
-		
-		// Check for ProcessId field
-		if strings.HasPrefix(trimmed, "ProcessId") {
-			parts := strings.SplitN(trimmed, ":", 2)
-			if len(parts) == 2 {
-				pid, _ = strconv.Atoi(strings.TrimSpace(parts[1]))
-			}
-			inCommandLine = false
-			continue
-		}
-		
-		// Check for CommandLine field (may span multiple lines)
-		if strings.HasPrefix(trimmed, "CommandLine") {
-			parts := strings.SplitN(trimmed, ":", 2)
-			if len(parts) == 2 {
-				cmdLine.WriteString(strings.TrimSpace(parts[1]))
-				cmdLine.WriteString(" ")
-			}
-			inCommandLine = true
-			continue
-		}
-		
-		// Continuation of CommandLine (indented lines after CommandLine:)
-		if inCommandLine && len(trimmed) > 0 && !strings.Contains(trimmed, ":") {
-			cmdLine.WriteString(trimmed)
-			cmdLine.WriteString(" ")
-		} else if strings.Contains(trimmed, ":") {
-			// New field found, stop continuing CommandLine
-			inCommandLine = false
-		}
-	}
-	
-	cmdLineStr := cmdLine.String()
-	if cmdLineStr == "" {
-		return nil, fmt.Errorf("Antigravity language server not found")
-	}
-	
-	return parseCommandLine(cmdLineStr + fmt.Sprintf(" PID=%d", pid))
-}
-
 // parseCommandLine extracts ports and CSRF token from command line arguments.
 func parseCommandLine(cmdLine string) (*ProcessInfo, error) {
 	info := &ProcessInfo{}

@@ -177,18 +177,6 @@ func createProgressBar(percent, width int) string {
 	return bar
 }
 
-// getStatusColor returns the appropriate color based on usage percentage.
-func getStatusColor(percent int) string {
-	switch {
-	case percent < 50:
-		return Green
-	case percent < 80:
-		return Yellow
-	default:
-		return Red
-	}
-}
-
 // getRemainingColor returns the appropriate color based on remaining percentage.
 func getRemainingColor(remainingPercent int) string {
 	switch {

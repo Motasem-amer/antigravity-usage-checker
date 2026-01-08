@@ -187,9 +187,13 @@ func (c *Client) parseUserStatusResponse(respBytes []byte) (*UsageData, error) {
 			ModelName: config.Label,
 		}
 		
-		// If label is missing, use a fallback (or skip?)
+		// If label is missing, use model name as fallback
 		if info.ModelName == "" {
-			info.ModelName = "Unknown Model"
+			if config.ModelOrAlias.Model != "" {
+				info.ModelName = config.ModelOrAlias.Model
+			} else {
+				info.ModelName = "Unknown Model"
+			}
 		}
 
 		// Calculate remaining percentage from fraction (0.0 to 1.0)

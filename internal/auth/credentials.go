@@ -32,7 +32,10 @@ func (c *Credentials) ExpiresInMinutes() int {
 // LoadCredentials loads OAuth credentials from the Antigravity config directory.
 // Returns nil if credentials are not found or cannot be loaded.
 func LoadCredentials() (*Credentials, error) {
-	configPath := getConfigPath()
+	configPath, err := getConfigPath()
+	if err != nil {
+		return nil, fmt.Errorf("failed to get config path: %w", err)
+	}
 	credsFile := filepath.Join(configPath, "oauth_creds.json")
 	
 	data, err := os.ReadFile(credsFile)
@@ -69,7 +72,10 @@ func LoadCredentialsWithRetry(maxRetries int, delay time.Duration) (*Credentials
 }
 
 // getConfigPath returns the path to the .gemini config directory.
-func getConfigPath() string {
-	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".gemini")
+func getConfigPath() (string, error) {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return "", fmt.Errorf("failed to get home directory: %w", err)
+	}
+	return filepath.Join(home, ".gemini"), nil
 }

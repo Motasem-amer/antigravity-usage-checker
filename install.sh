@@ -64,8 +64,8 @@ if [ -z "$VERSION" ]; then
     INSTALL_VERSION=$(curl -s https://api.github.com/repos/tungcorn/antigravity-usage-checker/releases/latest | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
     
     if [ -z "$INSTALL_VERSION" ]; then
-        echo -e "${YELLOW}⚠️  Could not fetch latest version, using v0.3.0${NC}"
-        INSTALL_VERSION="v0.3.0"
+        echo -e "${YELLOW}⚠️  Could not fetch latest version, using v0.5.0${NC}"
+        INSTALL_VERSION="v0.5.0"
     fi
 else
     INSTALL_VERSION="v$VERSION"

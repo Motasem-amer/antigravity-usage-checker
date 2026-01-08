@@ -15,14 +15,20 @@ import (
 const cacheFileName = "usage_cache.json"
 
 // getCachePath returns the path to the cache file.
-func getCachePath() string {
-	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".gemini", cacheFileName)
+func getCachePath() (string, error) {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return "", fmt.Errorf("failed to get home directory: %w", err)
+	}
+	return filepath.Join(home, ".gemini", cacheFileName), nil
 }
 
 // Save stores the usage data to the cache file.
 func Save(data *api.UsageData) error {
-	cachePath := getCachePath()
+	cachePath, err := getCachePath()
+	if err != nil {
+		return err
+	}
 	
 	// Ensure directory exists
 	dir := filepath.Dir(cachePath)
@@ -49,7 +55,10 @@ func Save(data *api.UsageData) error {
 // LoadLastKnown loads the last known usage data from cache.
 // Returns error if cache doesn't exist or data is too old (>24 hours).
 func LoadLastKnown() (*api.UsageData, error) {
-	cachePath := getCachePath()
+	cachePath, err := getCachePath()
+	if err != nil {
+		return nil, err
+	}
 	
 	data, err := os.ReadFile(cachePath)
 	if err != nil {
@@ -73,7 +82,10 @@ func LoadLastKnown() (*api.UsageData, error) {
 
 // Clear removes the cache file.
 func Clear() error {
-	cachePath := getCachePath()
+	cachePath, err := getCachePath()
+	if err != nil {
+		return err
+	}
 	if err := os.Remove(cachePath); err != nil && !os.IsNotExist(err) {
 		return fmt.Errorf("failed to clear cache: %w", err)
 	}

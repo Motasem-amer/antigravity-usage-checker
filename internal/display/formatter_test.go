@@ -54,32 +54,6 @@ func TestCreateProgressBar(t *testing.T) {
 	}
 }
 
-// TestGetStatusColor tests color selection based on percentage.
-func TestGetStatusColor(t *testing.T) {
-	tests := []struct {
-		percent   int
-		wantColor string
-	}{
-		{0, Green},
-		{25, Green},
-		{49, Green},
-		{50, Yellow},
-		{75, Yellow},
-		{79, Yellow},
-		{80, Red},
-		{100, Red},
-	}
-
-	for _, tt := range tests {
-		t.Run("", func(t *testing.T) {
-			got := getStatusColor(tt.percent)
-			if got != tt.wantColor {
-				t.Errorf("getStatusColor(%d) = %v, want %v", tt.percent, got, tt.wantColor)
-			}
-		})
-	}
-}
-
 // TestTruncateString tests string truncation.
 func TestTruncateString(t *testing.T) {
 	tests := []struct {
