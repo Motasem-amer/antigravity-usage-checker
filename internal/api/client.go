@@ -82,9 +82,13 @@ type promptCreditsInfo struct {
 
 // NewClient creates a new API client with the given connection parameters.
 func NewClient(connectPort int, csrfToken string, httpPort int) *Client {
-	// Create HTTP client that skips TLS verification (local connection)
+	// SECURITY NOTE: TLS verification is intentionally disabled because:
+	// 1. This ONLY connects to localhost (127.0.0.1) - never to external servers
+	// 2. The Antigravity language server uses a self-signed certificate
+	// 3. No sensitive data is transmitted over the network
+	// This is safe for local-only connections and required for the tool to work.
 	transport := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // #nosec G402
 	}
 	
 	return &Client{

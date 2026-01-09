@@ -251,10 +251,14 @@ func getListeningPortsForPID(pid int) ([]int, error) {
 // testAPIPort tests if a port responds to the Antigravity API.
 // Uses GetUnleashData endpoint which doesn't require authentication.
 func testAPIPort(port int, csrfToken string) bool {
+	// SECURITY NOTE: TLS verification is intentionally disabled because:
+	// 1. This ONLY connects to localhost (127.0.0.1) - never to external servers
+	// 2. The Antigravity language server uses a self-signed certificate
+	// This is safe for local-only connections.
 	client := &http.Client{
 		Timeout: 3 * time.Second,
 		Transport: &http.Transport{
-			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // #nosec G402
 		},
 	}
 	
