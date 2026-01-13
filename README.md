@@ -22,6 +22,15 @@ This tool is designed to be transparent and safe:
 
 > 💡 You can review the [install scripts](install.ps1) before running them.
 
+## 🔧 How It Works
+
+1. Detects the running Windsurf language server process
+2. Extracts connection parameters (port, CSRF token) from process arguments
+3. Calls the local API at `127.0.0.1` to fetch quota data
+4. Parses and displays the information in terminal
+
+> **Note**: This tool only reads publicly available process information and communicates with localhost. No external network requests are made.
+
 ---
 
 ## 🇬🇧 English
